@@ -5,10 +5,8 @@ build:
   tools:
     python: "3.12"
   jobs:
-    post_create_environment:
-      - pip install poetry
     post_install:
-      - poetry install --with doc
+      - pip install mkdocs-macros-plugin mkdocs-material
 
 mkdocs:
   configuration: mkdocs.yml
