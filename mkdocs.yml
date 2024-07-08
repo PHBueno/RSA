@@ -1,5 +1,7 @@
 site_name: Criptografia RSA
 repo_url: https://github.com/PHBueno/RSA
+repo_name: PHBueno/RSA
+
 markdown_extensions: 
   - attr_list
   - admonition
