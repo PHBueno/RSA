@@ -10,7 +10,7 @@ build:
       - pip install mkdocs-material
       - poetry config virtualenvs.create false
     post_install:
-      - poetry install --only doc
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --only doc
 
 mkdocs:
   configuration: mkdocs.yml

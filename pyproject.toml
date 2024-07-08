@@ -23,8 +23,9 @@ isort = "^5.13.2"
 taskipy = "^1.12.2"
 
 [tool.poetry.group.doc.dependencies]
-mkdocs-material = "^9.5.26"
 mkdocstrings = "^0.25.1"
+mkdocs-macros-plugin = "^1.0.5"
+mkdocs-material = "^9.5.28"
 mkdocstrings-python = "^1.10.3"
 
 
