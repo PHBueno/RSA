@@ -1,0 +1,21 @@
+site_name: Criptografia RSA
+
+markdown_extensions: 
+  - attr_list
+  - admonition
+  - pymdownx.tasklist
+
+theme: 
+  name: material
+  language: pt-BR
+
+plugins: 
+  - macros
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [rsa]
+
+extra: 
+  commands:
+    run: poetry run rsa
