@@ -28,11 +28,6 @@ mkdocs-macros-plugin = "^1.0.5"
 mkdocs-material = "^9.5.28"
 mkdocstrings-python = "^1.10.3"
 
-
-[tool.poetry.group.docs.dependencies]
-mkdocs-macros-plugin = "^1.0.5"
-mkdocs-material = "^9.5.28"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
