@@ -14,7 +14,7 @@ def _create_dir(path: str) -> dict[str, str]:
         Um dicionário com mensagem de falha ou sucesso
     """
     log.info(f'Criando diretório "{path}"')
-    if not os.path.exists(path=path):
+    if not os.path.exists(path):
         try:
             os.makedirs(path)
             log.info(f'Diretório {path} criado com sucesso')
