@@ -13,6 +13,7 @@ from rsa.utils.cli.validate_arguments import (
     validate_public_key,
 )
 from rsa.utils.cli.write_files import write_file, write_key_file
+from rsa.utils.decode_rsa_key import decode_private_key as decoder_priv_key
 from rsa.utils.logging.config import log
 
 cli = Typer(
@@ -73,6 +74,26 @@ def generate_keys(
         )
 
 
+@cli.command(help='Realiza o decode de chaves Privadas')
+def decode_private_key(
+    private_key_filename: Annotated[
+        Optional[str], Option(help='O arquivo com a chave privada')
+    ],
+):
+    log.info('...Decodificando Chave Privada...')
+
+    priv_key_bytes = read_key_file(
+        key_file_path=str(private_key_filename),
+        key_type='private',
+    )
+    priv_key_decoded = decoder_priv_key(private_key_bytes=priv_key_bytes)
+
+    for k, v in priv_key_decoded.items():
+        print(f'{k} = {v}')
+
+    # print(priv_key_dict)
+
+
 @cli.command(help='Realiza cifração da mensagem')
 def cript(
     output_file_name: Annotated[
@@ -110,7 +131,7 @@ def cript(
     log.info('...Cifrando mensagem...')
 
     pub_key = (
-        read_key_file(key_file_path=str(key_file))
+        read_key_file(key_file_path=str(key_file), key_type='public').decode()
         if key_file
         else str(public_key)
     )
@@ -163,7 +184,10 @@ def dcript(
     log.info('...Decifrando Criptograma...')
 
     priv_key = (
-        read_key_file(key_file_path=str(key_file))
+        read_key_file(
+            key_file_path=str(key_file),
+            key_type='private',
+        ).decode()
         if key_file
         else str(private_key)
     )

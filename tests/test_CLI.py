@@ -234,8 +234,8 @@ def test_deve_retornar_erro_quando_informar_um_arquivo_de_chave_publica_inexiste
 
 def test_deve_retornar_erro_quando_informar_um_arquivo_de_mensagem_inexistente():
     key_filepath = os.path.join(
-        default_files_path, 'cript', f'{public_key_pem_file}'
-    )  # O path com o arquivo de chave
+        cript_filespath, 'cript', f'{public_key_pem_file}'
+    )  # O path com o arquivo de chave pública "~/rsa/pytest/cript/f'{public_key_pem_file}'"
 
     fake_message_file = '/teste/fake-message.txt'
     message_error = f'O arquivo {fake_message_file} não foi encontrado!'

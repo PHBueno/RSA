@@ -3,8 +3,40 @@ from base64 import b64decode
 
 from rsa.utils.logging.config import log
 
+pem_rsa_key_identifier = {
+    'private': [
+        '-----BEGIN RSA PRIVATE KEY-----',
+        '-----END RSA PRIVATE KEY-----',
+    ],
+    'public': [
+        '-----BEGIN RSA PUBLIC KEY-----',
+        '-----END RSA PUBLIC KEY-----',
+    ],
+}
 
-def read_key_file(key_file_path: str) -> str:
+
+def _remove_pem_identifier(content: list, key_type: str):
+    """
+    Função privada utilizada para remover o identificador PEM das chaves Públicas e Privadas.
+
+    Arguments:
+        content (list): Uma lista com o conteúdo da chave.
+        key_type (str): O tipo de chave que será tratada.
+
+    Returns:
+        Uma lista com a chave sem os identificadores.
+    """
+    _content = content
+
+    for key_indentifier in pem_rsa_key_identifier[key_type]:
+        if key_indentifier in _content:
+            index = _content.index(key_indentifier)
+            del _content[index]
+        # TODO: Escrever exception
+    return _content
+
+
+def read_key_file(key_file_path: str, key_type: str):
     """
     Função utilizada para fazer a leitura dos arquivos com as chaves do RSA.
 
@@ -12,6 +44,7 @@ def read_key_file(key_file_path: str) -> str:
 
     Arguments:
         key_file_path (str): O caminho absoluto para a chave
+        key_type (str): O tipo de chave que será tratada
 
     Returns:
         O hexadecimal da chave
@@ -22,11 +55,17 @@ def read_key_file(key_file_path: str) -> str:
         with open(key_file_path, 'r') as file:
             # Se estiver no formato .pem, faz uncode do base64
             if extension == '.pem':
-                file.readline()
-                content = file.readline()
-                return b64decode(content).decode()
+                _content = [item.rstrip() for item in file.readlines()]
+                content_without_identifier = _remove_pem_identifier(
+                    content=_content,
+                    key_type=key_type,
+                )
+                print(content_without_identifier)
+                content = ''.join(content_without_identifier)
+
+                return b64decode(content)
             else:
-                return file.read()
+                return file.read().encode()
     except FileNotFoundError:
         log.error(f'O arquivo {key_file_path} não foi encontrado!')
         raise FileNotFoundError(

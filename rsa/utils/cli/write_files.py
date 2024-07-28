@@ -42,10 +42,10 @@ def write_key_file(
         Um dicionário com mensagem de falha ou sucesso
     """
     pem_key = {
-        'public_header': '-----BEGIN PUBLIC KEY-----',
-        'public_footer': '-----END PUBLIC KEY-----',
-        'private_header': '-----BEGIN PRIVATE KEY-----',
-        'private_footer': '-----END PRIVATE KEY-----',
+        'public_header': '-----BEGIN RSA PUBLIC KEY-----',
+        'public_footer': '-----END RSA PUBLIC KEY-----',
+        'private_header': '-----BEGIN RSA PRIVATE KEY-----',
+        'private_footer': '-----END RSA PRIVATE KEY-----',
     }
 
     _create_dir(path=key_file_path)
