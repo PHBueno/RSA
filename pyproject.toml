@@ -1,9 +1,22 @@
 [tool.poetry]
-name = "rsa"
+name = "rsa-cli"
 version = "0.0.1"
 description = ""
 authors = ["Pedro Bueno <contato0113@gmail.com>"]
 readme = "README.md"
+packages = [{include = "rsa"}]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Environment :: Console",
+    "Topic :: Education",
+    "Programming Language :: Python :: 3.9",
+]
+
+[tool.poetry.urls]
+"Documentação" = "https://rsa-cli.readthedocs.io/pt-br/latest/"
+"Código" = "https://github.com/PHBueno/RSA"
+
 
 [tool.poetry.scripts]
 rsa = "rsa.core.cli:cli"
