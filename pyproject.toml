@@ -1,7 +1,8 @@
 [tool.poetry]
 name = "rsa-cli"
-version = "0.0.1"
-description = ""
+version = "0.1.0"
+description = "RSA é uma CLI utilizada para criar chaves RSA públicas e privadas, realizar a cifração e decifração de informações"
+license = "MIT"
 authors = ["Pedro Bueno <contato0113@gmail.com>"]
 readme = "README.md"
 packages = [{include = "rsa"}]
