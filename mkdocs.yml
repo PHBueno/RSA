@@ -20,4 +20,4 @@ plugins:
 
 extra: 
   commands:
-    run: poetry run rsa
+    run: rsa
