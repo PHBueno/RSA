@@ -60,9 +60,7 @@ def read_key_file(key_file_path: str, key_type: str):
                     content=_content,
                     key_type=key_type,
                 )
-                print(content_without_identifier)
                 content = ''.join(content_without_identifier)
-
                 return b64decode(content)
             else:
                 return file.read().encode()
