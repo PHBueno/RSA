@@ -1,6 +1,5 @@
 import os
 from importlib.metadata import version
-
 from typing import Optional
 
 from rich.console import Console
@@ -38,18 +37,20 @@ __version__ = version('rsa-cli')
 console = Console()
 rsa = RSA()
 
+
 def version_callback(value: bool):
     if value:
-        print(f"RSA CLI Version: {__version__}")
+        print(f'RSA CLI Version: {__version__}')
         raise Exit()
+
 
 @cli.callback()
 def common(
     ctx: Context,
     version: Annotated[
         Optional[bool],
-        Option("--version", is_eager=True, callback=version_callback),
-    ] = None
+        Option('--version', is_eager=True, callback=version_callback),
+    ] = None,
 ):
     pass
 
