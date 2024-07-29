@@ -123,7 +123,7 @@ def private(
 
 @cli.command(help='Realiza cifração da mensagem')
 def cript(
-    output_file_name: Annotated[
+    output_filename: Annotated[
         Optional[str],
         Option(help='O arquivo onde o criptograma será salvo'),
     ],
@@ -173,7 +173,7 @@ def cript(
     cif = rsa.cript(public_key=pub_key, msg=str(_message))
 
     write_file(
-        path=absolute_path, filename=str(output_file_name), content=str(cif)
+        path=absolute_path, filename=str(output_filename), content=str(cif)
     )  # Escreve a cifra no arquivo
 
 

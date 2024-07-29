@@ -21,13 +21,13 @@ Usage: rsa [OPTIONS] COMMAND [ARGS]...
  RSA cli para criação de chaves, cifração e decifração de informações                                                                                     
                                                                                                                                                           
 ╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --install-completion          Install completion for the current shell.                                                                                │
-│ --show-completion             Show completion for the current shell, to copy it or customize the installation.                                         │
-│ --help                        Show this message and exit.                                                                                              │
+│ --version                                                                                                                                              │
+│ --help             Show this message and exit.                                                                                                         │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ╭─ Commands ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ cript           Realiza cifração da mensagem                                                                                                           │
 │ dcript          Realiza a decifração de um criptograma                                                                                                 │
+│ decode-keys     Realiza o decode de chaves criptográficas OpenSSL                                                                                      │
 │ generate-keys   Cria chaves pública e privada para o RSA                                                                                               │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
@@ -79,7 +79,7 @@ Usage: rsa cript [OPTIONS] [MESSAGE]
 │   message      [MESSAGE]  A mensagem que se deseja cifrar [default: None]                                                                              │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ╭─ Options ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ *  --output-file-name        TEXT  O arquivo onde o criptograma será salvo [default: None] [required]                                                  │
+│ *  --output-filename        TEXT  O arquivo onde o criptograma será salvo [default: None] [required]                                                  │
 │    --public-key              TEXT  A chave pública para a cifração [default: None]                                                                     │
 │    --message-file            TEXT  O caminho absoluto do arquivo com a mensagem que se deseja cifrar [default: None]                                   │
 │    --key-file                TEXT  O caminho absoluto com a chave pública [default: None]                                                              │
