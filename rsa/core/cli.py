@@ -1,8 +1,10 @@
 import os
+from importlib.metadata import version
+
 from typing import Optional
 
 from rich.console import Console
-from typer import Argument, Option, Typer
+from typer import Argument, Context, Exit, Option, Typer
 from typing_extensions import Annotated
 
 from rsa.core.RSA import RSA
@@ -17,12 +19,30 @@ from rsa.utils.decode_rsa_key import decode_private_key as decoder_priv_key
 from rsa.utils.logging.config import log
 
 cli = Typer(
+    add_completion=False,
     no_args_is_help=True,
     help='RSA cli para criação de chaves, cifração e decifração de informações',
     pretty_exceptions_show_locals=False,
 )
+
+__version__ = version('rsa-cli')
 console = Console()
 rsa = RSA()
+
+def version_callback(value: bool):
+    if value:
+        print(f"RSA CLI Version: {__version__}")
+        raise Exit()
+
+@cli.callback()
+def common(
+    ctx: Context,
+    version: Annotated[
+        Optional[bool],
+        Option("--version", is_eager=True, callback=version_callback),
+    ] = None
+):
+    pass
 
 
 @cli.command(help='Cria chaves pública e privada para o RSA')
@@ -90,8 +110,6 @@ def decode_private_key(
 
     for k, v in priv_key_decoded.items():
         print(f'{k} = {v}')
-
-    # print(priv_key_dict)
 
 
 @cli.command(help='Realiza cifração da mensagem')

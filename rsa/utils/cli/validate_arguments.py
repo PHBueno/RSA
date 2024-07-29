@@ -1,6 +1,5 @@
 from typing import Optional
 
-from click import Option
 from typer import BadParameter, Context
 
 
