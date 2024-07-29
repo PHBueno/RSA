@@ -25,6 +25,15 @@ cli = Typer(
     pretty_exceptions_show_locals=False,
 )
 
+decode_keys = Typer(
+    add_completion=False,
+    no_args_is_help=True,
+    help='Realiza o decode de chaves criptográficas OpenSSL',
+    pretty_exceptions_show_locals=False,
+)
+
+cli.add_typer(decode_keys, name='decode-keys')
+
 __version__ = version('rsa-cli')
 console = Console()
 rsa = RSA()
@@ -94,22 +103,22 @@ def generate_keys(
         )
 
 
-@cli.command(help='Realiza o decode de chaves Privadas')
-def decode_private_key(
-    private_key_filename: Annotated[
-        Optional[str], Option(help='O arquivo com a chave privada')
+@decode_keys.command(help='Realiza o decode de chaves Privadas do OpenSSL')
+def private(
+    key_file: Annotated[
+        Optional[str], Option(help='O arquivo com a chave privada OpenSSL')
     ],
 ):
-    log.info('...Decodificando Chave Privada...')
+    log.info('... Decodificando Chave Privada ...')
 
     priv_key_bytes = read_key_file(
-        key_file_path=str(private_key_filename),
+        key_file_path=str(key_file),
         key_type='private',
     )
     priv_key_decoded = decoder_priv_key(private_key_bytes=priv_key_bytes)
 
     for k, v in priv_key_decoded.items():
-        print(f'{k} = {v}')
+        console.print(f'{k} = {v}')
 
 
 @cli.command(help='Realiza cifração da mensagem')

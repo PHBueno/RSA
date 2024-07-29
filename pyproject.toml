@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rsa-cli"
-version = "0.2.0"
+version = "0.3.0"
 description = "RSA-CLI é uma ferramenta de linha de comando utilizada para criar chaves RSA públicas e privadas, realizar a cifração e decifração de informações"
 license = "MIT"
 authors = ["Pedro Bueno <contato0113@gmail.com>"]
